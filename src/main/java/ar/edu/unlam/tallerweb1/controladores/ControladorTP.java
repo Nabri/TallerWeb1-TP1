@@ -64,7 +64,7 @@ public class ControladorTP {
 	}
 	
 	@RequestMapping("/errorOperacion")
-	public ModelAndView irALogin() {
+	public ModelAndView operacionErronea() {
 		ModelMap model = new ModelMap();
 		return new ModelAndView("errorOperacion", model);
 	}
