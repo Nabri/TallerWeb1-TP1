@@ -10,6 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -89,13 +90,20 @@ public class ControladorLogin {
 	}
 	
 	
-	@RequestMapping("/saludar")
-	public ModelAndView saludar(@RequestParam("nombre") String name, @RequestParam("apellido") String lastname){
+	@RequestMapping("/saludarURL")
+	public ModelAndView saludarURL(@RequestParam("nombre") String name, @RequestParam("apellido") String lastname){
 		ModelMap model = new ModelMap();
 		model.put("nombre", name);
 		model.put("apellido", lastname);
 		return new ModelAndView("saludo", model);
-		
+	}
+	
+	@RequestMapping("/saludarVariable/{nombre}/{apellido}")
+	public ModelAndView saludarVariable(@PathVariable String nombre, @PathVariable String apellido){
+		ModelMap model = new ModelMap();
+		model.put("nombre", nombre);
+		model.put("apellido", apellido);
+		return new ModelAndView("saludo", model);
 	}
 	
 }

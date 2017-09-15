@@ -16,6 +16,28 @@ public class ControladorTP {
 		ModelMap model = new ModelMap();
 		Integer rtdo;
 		
+		switch (operacion.toUpperCase()) {
+		case "SUMAR":
+			rtdo = valor1 + valor2;
+			break;
+		case "RESTAR":
+			rtdo = valor1 - valor2;
+			break;
+		case "MULTIPLICAR":
+			rtdo = valor1 * valor2;
+			break;
+		case "DIVIDIR":
+			if (valor2 != 0) {
+				rtdo = valor1 / valor2;
+			} else {
+				return new ModelAndView("redirect:/errorOperacion");
+			}
+			break;
+		default:
+			return new ModelAndView("redirect:/errorOperacion");
+		}
+		
+		/*
 		if (operacion.equals("sumar")) {
 			rtdo = valor1 + valor2;
 		} else if (operacion.equals("restar")) {
@@ -31,8 +53,9 @@ public class ControladorTP {
 		} else {
 			return new ModelAndView("redirect:/errorOperacion");
 		}
+		*/
 		
-		model.put("operation", operacion);
+		model.put("operation", operacion.toLowerCase());
 		model.put("primerValor", valor1);
 		model.put("segundoValor", valor2);
 		model.put("resultado", rtdo);
